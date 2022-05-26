@@ -1,198 +1,468 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Hexo</title><meta name="author" content="😊"><link rel="shortcut icon" href="/img/favicon.png"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 6.2.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/#Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/"> About</a></li><li class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://phower.me"> Blog</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.png'" alt="avatar"></div><div class="author-discrip"><h3>😊</h3><p class="author-bio">╰(*°▽°*)╯</p></div><div class="author-links"><button class="btn m-social-links">Links</button><ul class="social-icons"><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-github" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-weibo" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-weixin" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-qq" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fas fa-envelope" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fas fa-rss" aria-hidden="true"></i></a></li></ul><ul class="social-links"><li><a class="e-social-link" href="/" target="_blank"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span>Google Scholar</span></a></li><li><a class="e-social-link" href="/" target="_blank"><i class="fab fa-orcid" aria-hidden="true"></i><span>ORCID</span></a></li></ul></div><a class="cv-links" href="/attaches/CV.pdf" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"><span>My Detail CV.</span></i></a></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">《Spark HA & Yarn配置》</h2><article><h1 id="《Spark-HA-amp-Yarn配置》"><a href="#《Spark-HA-amp-Yarn配置》" class="headerlink" title="《Spark HA &amp; Yarn配置》"></a>《Spark HA &amp; Yarn配置》</h1><p>Spark-Standalone-HA模式<br>Spark Standalone集群是Master-Slaves架构的集群模式,和大部分的Master-Slaves结构集群一样,存在<br>着Master 单点故障(SPOF)的问题。简单理解为，spark-Standalone 模式下为 master 节点控制其他节<br>点，当 master 节点出现故障时，集群就不可用了。 spark-Standalone-HA 模式下<br>master 节点不固定，当一个宕机时，立即换另一台为 master 保障不出现故障。<br>此处因为先前配置时的 zookeeper 版本和 spark 版本不太兼容，导致此模式有故障，需要重新下<br>载配置新的版本的 zookeeper<br>配置之前需要删除三台主机的 旧版 zookeeper 以及 对应的软连接<br>在 master 节点上重新进行前面配置的 zookeeper 操作</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Hexo</title><meta name="author" content="😊"><link rel="shortcut icon" href="/img/favicon.png"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 6.2.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Hexo</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/#Publications"> Publications</a></li><li class="menus_item"><a class="site-page" href="/"> About</a></li><li class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://phower.me"> Blog</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.png'" alt="avatar"></div><div class="author-discrip"><h3>😊</h3><p class="author-bio">╰(*°▽°*)╯</p></div><div class="author-links"><button class="btn m-social-links">Links</button><ul class="social-icons"><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-github" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-weibo" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-weixin" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fab fa-qq" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fas fa-envelope" aria-hidden="true"></i></a></li><li><a class="social-icon" href="/" target="_blank"><i class="fas fa-rss" aria-hidden="true"></i></a></li></ul><ul class="social-links"><li><a class="e-social-link" href="/" target="_blank"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span>Google Scholar</span></a></li><li><a class="e-social-link" href="/" target="_blank"><i class="fab fa-orcid" aria-hidden="true"></i><span>ORCID</span></a></li></ul></div><a class="cv-links" href="/attaches/CV.pdf" target="_blank"><i class="fas fa-file-pdf" aria-hidden="true"><span>My Detail CV.</span></i></a></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">《spark基础环境配置》</h2><article><h1 id="《spark基础环境配置》"><a href="#《spark基础环境配置》" class="headerlink" title="《spark基础环境配置》"></a>《spark基础环境配置》</h1><p>打开一个hosts映射文件,为了保证后续相互关联的虚拟机能够通过主机名进行访问，根据实际需求配置<br>对应的IP和主机名映射，分别将主机名master、slave1、slave2 与IP地址 192.168.88.134、<br>192.168.88.135 和192.168.88.136进行了匹配映射(这里通常要根据实际需要，将要搭建的集群主机都<br>配置主机名和IP映射)。<br>编辑 &#x2F;etc&#x2F;hosts 文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>vim &#x2F;etc&#x2F;hosts<br>   内容修改为（注：三台主机内容一样）<br>   localhost4.localdomain4 ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6<br>   192.168.88.135 node1<br>   192.168.88.136 node2<br>   192.168.88.137 node3</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>三、集群配置时间同步<br>定义：网络时间服务协议（Network Time Protocol, NTP），是用来使计算机时间同步化的一种协议，它可以使计算机对其服务器做时间同步化。<br>原因：时间同步服务器，顾名思义就是来同步时间的。在集群中同步时间有着十分重要的作用，负载均衡集群或高可用集群如果时间不一致，在服务器之间的数据误差就会很大，寻找数据便会成为一件棘手的事情。若是时间无法同步，那么就算是备份了数据，你也可能无法在正确的时间将正确的数据备份。那损失可就大了。<br>yum 安装 ntp （注：三台主机做同样操作）</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>yum install ntp -y<br>   开机自启动ntp<br>   systemctl enable ntpd &amp;&amp; systemctl start ntpd<br>   结果显示： [root@master ~]# systemctl enable ntpd &amp;&amp; systemctl start ntpd Created symlink from &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;multi- user.target.wants&#x2F;ntpd.service to &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;system&#x2F;ntpd.service.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>授权 192.168.88.0-192.168.10.255 网段上的所有机器可以从这台机器上查询和同步时间</p>
 <blockquote>
 <blockquote>
 <blockquote>
 </blockquote>
-<p>   1.上传apache-zookeeper-3.7.0-bin.tar.gz 到&#x2F;export&#x2F;server&#x2F;目录下 并解压文件 2.在 &#x2F;export&#x2F;server 目录下创建软连接 3.进入 &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;conf&#x2F; 将 zoo_sample.cfg 文件复制为新文件 zoo.cfg 4.接上步给 zoo.cfg 添加内容 5.进入 &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas 目录在此目录下创建 myid 文件，将 1 写入进 去6.将 master 节点中 &#x2F;export&#x2F;server&#x2F;zookeeper-3.7.0 路径下内容推送给slave1 和 slave2 7.推送成功后，分别在 slave1 和 slave2 上创建软连接 8.接上步推送完成后将 slave1 和 slave2 的 &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F;文件夹 下的 myid 中的内容分别改为 2 和 3 配置环境变量： 因先前配置 zookeeper 时候创建过软连接且以 ’zookeeper‘ 为路径，所以不用配置环境变量，此 处也是创建软连接的方便之处</p>
+<p>   #查看ntp配置文件<br>   ls -al &#x2F;etc | grep ‘ntp’<br>   #显示内容<br>   [root@node1 etc]# ls -al &#x2F;etc | grep ‘ntp’<br>   drwxr-xr-x 3 root root 52 3月 10 18:25 ntp<br>   -rw-r–r– 1 root root 2041 3月 10 20:03 ntp.conf<br>    #编辑内容添加 restrict 192.168.88.0 mask 255.255.255.0 （注：在17行左右） vim &#x2F;etc&#x2F;ntp.conf<br>    16 # Hosts on local network are less restricted.<br>    17 restrict 192.168.88.0 mask 255.255.255.0</p>
 </blockquote>
 </blockquote>
-<p>进入 &#x2F;export&#x2F;server&#x2F;spark&#x2F;conf 文件夹 修改 spark-env.sh 文件内容</p>
+<p>集群在局域网中，不使用其他互联网上的时间</p>
 <blockquote>
 <blockquote>
 <blockquote>
 </blockquote>
-<p>   cd &#x2F;export&#x2F;server&#x2F;spark&#x2F;conf<br>    vim spark-env.sh</p>
-</blockquote>
-</blockquote>
-<p>为 83 行内容加上注释，此部分原为指定 某台主机 做 master ，加上注释后即为 任何主机都<br>可以做 master</p>
-<blockquote>
-<blockquote>
-<blockquote>
-</blockquote>
-<p>   结果显示：<br>     ……<br>      82 # 告知Spark的master运行在哪个机器上 83 # export SPARK_MASTER_HOST&#x3D;master<br>     ………</p>
-</blockquote>
-</blockquote>
-<p>文末添加内容</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>SPARK_DAEMON_JAVA_OPTS&#x3D;”-Dspark.deploy.recoveryMode&#x3D;ZOOKEEPER -<br>       Dspark.deploy.zookeeper.url&#x3D;master:2181,slave1:2181,slave2:2181 - Dspark.deploy.zookeeper.dir&#x3D;&#x2F;spark-ha”<br>        #spark.deploy.recoveryMode<br>        指定HA模式 基于Zookeeper实现<br>        #指定Zookeeper的连接地址<br>        #指定在Zookeeper中注册临时节点的路径</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>分发 spark-env.sh 到 salve1 和 slave2 上</p>
-<blockquote>
-<blockquote>
-<blockquote>
-</blockquote>
-<pre><code>scp spark-env.sh slave1:/export/server/spark/conf/ 
-scp spark-env.sh slave2:/export/server/spark/conf/
+<pre><code>#修改 /etc/ntpd.conf 内容
+vim vim /etc/ntp.conf # 
 </code></pre>
 </blockquote>
 </blockquote>
-<p>启动之前确保 Zookeeper 和 HDFS 均已经启动<br>启动集群:</p>
-<blockquote>
-<blockquote>
-<blockquote>
-</blockquote>
-<p>   #在 master 上 启动一个master 和全部worker &#x2F;export&#x2F;server&#x2F;spark&#x2F;sbin&#x2F;start-all.sh # 注意, 下面命令在 slave1 上执行 启动 slave1 上的 master 做备用 master &#x2F;export&#x2F;server&#x2F;spark&#x2F;sbin&#x2F;start-master.sh<br>    结果显示：<br>    (base) [root@master ~]# jps<br>    37328 DataNode<br>    41589 Master<br>    35798 QuorumPeerMain<br>    38521 ResourceManager<br>    46281 Jps<br>    38907 NodeManager<br>    41821 Worker<br>    36958 NameNode (base)<br>    [root@slave1 sbin]# jps<br>    36631 DataNode<br>    48135 Master<br>    35385 QuorumPeerMain<br>    37961 NodeManager<br>    40970 Worker<br>    48282 Jps<br>    37276 SecondaryNameNode</p>
-</blockquote>
-</blockquote>
-<p>访问 WebUI 界面</p>
-<blockquote>
-<blockquote>
-<blockquote>
-</blockquote>
-<pre><code>http://master:8081/
+<pre><code>将21-24行内容注释掉（注：原来未注释）   
+21 #server 0.centos.pool.ntp.org iburst 
+22 #server 1.centos.pool.ntp.org iburst 
+23 #server 2.centos.pool.ntp.org iburst 
+24 #server 3.centos.pool.ntp.org iburst 
+# 在25行添加 server masterIP 即为： server 192.168.88.135
 </code></pre>
-<p>   <a target="_blank" rel="noopener" href="http://slave1:8082/">http://slave1:8082/</a></p>
-</blockquote>
-</blockquote>
-<p>此时 kill 掉 master 上的 master 假设 master 主机宕机掉</p>
+<p>node 和 node3 相同操作<br>三台主机同时执行</p>
 <blockquote>
 <blockquote>
 <blockquote>
 </blockquote>
-<p>   #master主机 master 的进程号 kill -9 41589 结果显示： (base) [root@master ~]# jps 37328 DataNode 90336 Jps 35798 QuorumPeerMain 38521 ResourceManager 38907 NodeManager 41821 Worker 36958 NameNode</p>
+<p>   systemctl enable ntpd &amp;&amp; systemctl start ntpd</p>
 </blockquote>
 </blockquote>
-<p>访问 slave1 的 WebUI</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://slave1:8082/">http://slave1:8082/</a></p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>进行主备切换的测试<br>提交一个 spark 任务到当前 活跃的 master上 :</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>&#x2F;export&#x2F;server&#x2F;spark&#x2F;bin&#x2F;spark-submit –master spark:&#x2F;&#x2F;master:7077 &#x2F;export&#x2F;server&#x2F;spark&#x2F;examples&#x2F;src&#x2F;main&#x2F;python&#x2F;pi.py 1000</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>复制标签 kill 掉 master 的 进程号<br>再次访问 master 的 WebUI</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://master:8081/">http://master:8081/</a><br>      网页访问不了！</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>再次访问 slave1 的 WebUI</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="http://slave1:8082/">http://slave1:8082/</a></p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>可以看到当前活跃的 master 提示信息</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>(base) [root@master ~]# &#x2F;export&#x2F;server&#x2F;spark&#x2F;bin&#x2F;spark-submit –master spark:&#x2F;&#x2F;master:7077 &#x2F;export&#x2F;server&#x2F;spark&#x2F;examples&#x2F;src&#x2F;main&#x2F;python&#x2F;pi.py 1000 22&#x2F;03&#x2F;29 16:11:15 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform… using builtin-java classes where applicable 22&#x2F;03&#x2F;29 16:12:16 WARN StandaloneAppClient$ClientEndpoint: Connection to master:7077 failed; waiting for master to reconnect… 22&#x2F;03&#x2F;29 16:12:16 WARN StandaloneSchedulerBackend: Disconnected from Spark cluster! Waiting for reconnection… 22&#x2F;03&#x2F;29 16:12:16 WARN StandaloneAppClient$ClientEndpoint: Connection to master:7077 failed; waiting for master to reconnect… Pi is roughly 3.140960 (base) [root@master ~]#</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>Spark On YARN模式</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>在已有YARN集群的前提下在单独准备Spark StandAlone集群,对资源的利用就不高.Spark On YARN, 无</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>需部署Spark集群, 只要找一台服务器, 充当Spark的客户端<br>保证 HADOOP_CONF_和 DIR_YARN_CONF_DIR 已经配置在 spark-env.sh 和环境变量中 （注: 前面配置spark-Standlone 时已经配置过此项了）</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>spark-env.sh 文件部分显示： …. 77 ## HADOOP软件配置文件目录，读取HDFS上文件和运行YARN集群 78 HADOOP_CONF_DIR&#x3D;&#x2F;export&#x2F;server&#x2F;hadoop&#x2F;etc&#x2F;hadoop 79 YARN_CONF_DIR&#x3D;&#x2F;export&#x2F;server&#x2F;hadoop&#x2F;etc&#x2F;hadoop ….</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>链接到 YARN 中（注: 交互式环境 pyspark 和 spark-shell 无法运行 cluster模式）<br>bin&#x2F;pyspark –master yarn –deploy-mode client|cluster # –deploy-mode 选项是指定部署模式, 默认是 客户端模式 # client就是客户端模式 # cluster就是集群模式 # –deploy-mode 仅可以用在YARN模式下<br> bin&#x2F;spark-shell –master yarn –deploy-mode client|cluster<br>bin&#x2F;spark-submit –master yarn –deploy-mode client|cluster &#x2F;xxx&#x2F;xxx&#x2F;xxx.py 参数</p>
+<p>查看ntp端口</p>
 <blockquote>
 <blockquote>
 <blockquote>
 </blockquote>
-<p>  spark-submit 和 spark-shell 和 pyspark的相关参数</p>
+<p>   [root@master etc]# ss -tupln | grep ‘123’ udp UNCONN 0 0 192.168.88.135:123 <em>:</em> users:((“ntpd”,pid&#x3D;54823,fd&#x3D;19)) udp UNCONN 0 0 127.0.0.1:123 <em>:</em> users:((“ntpd”,pid&#x3D;54823,fd&#x3D;18)) udp UNCONN 0 0 <em>:123 <em>:</em> users:((“ntpd”,pid&#x3D;54823,fd&#x3D;16)) udp UNCONN 0 0 [fe80::2832:5f98:5bc0:e621]%ens33:123 [::]:</em> users:((“ntpd”,pid&#x3D;54823,fd&#x3D;23)) udp UNCONN 0 0 [::1]:123 [::]:* users:((“ntpd”,pid&#x3D;54823,fd&#x3D;20)) udp UNCONN 0 0 [::]:123 [::]:* users:((“ntpd”,pid&#x3D;54823,fd&#x3D;17))</p>
 </blockquote>
 </blockquote>
-<ul>
-<li>bin&#x2F;pyspark: pyspark解释器spark环境 - bin&#x2F;spark-shell: scala解释器spark环境 - bin&#x2F;spark-submit: 提交jar包或Python文件执行的工具 - bin&#x2F;spark-sql: sparksql客户端工具<br>  这4个客户端工具的参数基本通用.以spark-submit 为例: bin&#x2F;spark-submit –master spark:&#x2F;&#x2F;master:7077 xxx.py&#96;<blockquote>
-<blockquote>
-<blockquote>
-</blockquote>
-<p>  Usage: spark-submit [options] &lt;app jar | python file | R file&gt; [app arguments]<br>   Usage: spark-submit –kill [submission ID] –master [spark:&#x2F;&#x2F;…]<br>   Usage: spark-submit –status [submission ID] –master [spark:&#x2F;&#x2F;…]<br>   Usage: spark-submit run-example [options] example-class [example args] </p>
-<blockquote>
-</blockquote>
-<p>   Options: –master MASTER_URL spark:&#x2F;&#x2F;host:port, mesos:&#x2F;&#x2F;host:port, yarn, k8s:&#x2F;&#x2F;<a href="https://host:port">https://host:port</a>, or </p>
-<blockquote>
-</blockquote>
-<p>   local (Default: local[*]). –deploy-mode DEPLOY_MODE 部署模式 client 或者 cluster 默认是client –class CLASS_NAME 运行java或者scala class(for Java &#x2F; Scala apps). –name NAME 程序的名字 –jars JARS Comma-separated list of jars to include on the </p>
-<blockquote>
-</blockquote>
-<p>   driver and executor classpaths. –packages Comma-separated list of maven coordinates of </p>
-<blockquote>
-</blockquote>
-<p>   jars to include on the driver and executor classpaths. Will </p>
-<blockquote>
-</blockquote>
-<p>   search the local maven repo, then maven central and any </p>
-<blockquote>
-</blockquote>
-<p>   additional remote repositories given by –repositories. The </p>
-<blockquote>
-</blockquote>
-<p>   format for the coordinates should be </p>
-<blockquote>
-</blockquote>
-<p>   groupId:artifactId:version.<br>   –exclude-packages Comma-separated list of groupId:artifactId, to exclude while resolving the dependencies provided in<br>– packages to avoid dependency conflicts. –repositories Comma-separated list of additional remote repositories to search for the maven coordinates given with<br> – packages.<br> –py-files PY_FILES 指定Python程序依赖的其它python文件<br> –files FILES Comma-separated list of files to be placed in the working directory of each executor. File paths of these files in executors can be accessed via SparkFiles.get(fileName).<br>  –archives ARCHIVES Comma-separated list of archives to be extracted into the working directory of each executor.<br> –conf,<br> -c PROP&#x3D;VALUE 手动指定配置<br> –properties-file FILE Path to a file from which to load extra properties. If not specified, this will look for conf&#x2F;spark- defaults.conf. –driver-memory MEM Driver的可用内存(Default: 1024M). –driver-java-options Driver的一些Java选项 –driver-library-path Extra library path entries to pass to the driver. –driver-class-path Extra class path entries to pass to the driver. Note that jars added with –jars are automatically included in the classpath.<br> –executor-memory MEM Executor的内存 (Default: 1G).<br> –proxy-user NAME User to impersonate when submitting the application. This argument does not work with<br> –principal &#x2F;<br> –keytab.<br> –help,<br> -h 显示帮助文件<br>  –verbose,<br>  -v Print additional debug output. –version, 打印版本 Cluster deploy mode only(集群模式专属):<br>   –driver-cores NUM Driver可用的的CPU核数(Default: 1). Spark standalone or Mesos with cluster deploy mode only:<br>   –supervise 如果给定, 可以尝试重启Driver Spark standalone, Mesos or K8s with cluster deploy mode only:<br>   –kill SUBMISSION_ID 指定程序ID kill –status SUBMISSION_ID 指定程序ID 查看运行状态 Spark standalone, Mesos and Kubernetes only:<br>   –total-executor-cores NUM 整个任务可以给Executor多少个CPU核心用 Spark standalone, YARN and Kubernetes only:<br>    –executor-cores NUM 单个Executor能使用多少CPU核心 Spark on YARN and Kubernetes only(YARN模式下):<br>    –num-executors NUM Executor应该开启几个<br>    –principal PRINCIPAL Principal to be used to login to KDC.<br>    –keytab KEYTAB The full path to the file that contains the keytab for the principal specified above. Spark on YARN only:<br>    –queue QUEUE_NAME 指定运行的YARN队列(Default: “default”)</p>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<p>启动 YARN 的历史服务器</p>
+<p>配置完成后三台主机都需要重启</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>cd &#x2F;export&#x2F;server&#x2F;hadoop-3.3.0&#x2F;sbin .&#x2F;mr-jobhistory-daemon.sh start historyserver</p>
+</blockquote>
+<p>   shutdown -r 0</p>
 </blockquote>
 </blockquote>
-</blockquote>
-<p>访问WebUI界面</p>
+<p>三台主机同时执行（注：此过程需要5分钟左右）</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="http://master:19888/">http://master:19888/</a></p>
+</blockquote>
+<p>   ntpstat</p>
 </blockquote>
 </blockquote>
-</blockquote>
-<p>client 模式测试</p>
+<p>三、ssh免密钥登陆<br>SSH免密钥登陆可以更加方便的实现不同计算机之间的连接和切换<br>master 生成公钥私钥 (一路回车)<br>ssh-keygen </p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>SPARK_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;spark ${SPARK_HOME}&#x2F;bin&#x2F;spark-submit –master yarn –deploy-mode client – driver-memory 512m –executor-memory 512m –num-executors 1 –total- executor-cores 2 ${SPARK_HOME}&#x2F;examples&#x2F;src&#x2F;main&#x2F;python&#x2F;pi.py</p>
+</blockquote>
+<p>   #结果显示：<br>    [root@master .ssh]# ssh-keygen Generating public&#x2F;private rsa key pair.<br>    Enter file in which to save the key (&#x2F;root&#x2F;.ssh&#x2F;id_rsa):<br>    Enter passphrase (empty for no passphrase):<br>    Enter same passphrase again:<br>    Your identification has been saved in &#x2F;root&#x2F;.ssh&#x2F;id_rsa.<br>    Your public key has been saved in &#x2F;root&#x2F;.ssh&#x2F;id_rsa.pub. T<br>    he key fingerprint is: SHA256:QUAgFH5KBc&#x2F;Erlf1JWSBbKeEepPJqMBqpWbc02&#x2F;uFj8 root@master The key’s randomart image is:<br>    +—[RSA 2048]—-+<br>    | .&#x3D;++oo+.o+.     |<br>    | . <em>. ..</em>.o .    |<br>    |. o.++ *.+ o     |</p>
 </blockquote>
 </blockquote>
-</blockquote>
-<p>cluster 模式测试</p>
+<pre><code>|.o ++ B ...      | 
+|o.=o.o .S        |
+|.*oo.. .         | 
+|+ .. . o         | 
+| + E             | 
+| =o .            | 
++----[SHA256]-----+
+</code></pre>
+<p>查看隐藏的 .ssh 文件</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>SPARK_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;spark ${SPARK_HOME}&#x2F;bin&#x2F;spark-submit –master yarn –deploy-mode cluster –driver- memory 512m –executor-memory 512m –num-executors 1 –total-executor-cores 2 –conf “spark.pyspark.driver.python&#x3D;&#x2F;root&#x2F;anaconda3&#x2F;bin&#x2F;python3” –conf “spark.pyspark.python&#x3D;&#x2F;root&#x2F;anaconda3&#x2F;bin&#x2F;python3” ${SPARK_HOME}&#x2F;examples&#x2F;src&#x2F;main&#x2F;python&#x2F;pi.py 3**</p>
+</blockquote>
+<p>   la -al .ssh </p>
+</blockquote>
+</blockquote>
+<pre><code># 结果显示 
+[root@master ~]# ls -al .ssh/ 
+总用量 16 
+drwx------ 2 root root 80 3月 10 21:52 . 
+dr-xr-x---. 4 root root 175 3月 10 21:45 .. 
+-rw------- 1 root root 393 3月 10 21:52 authorized_keys 
+-rw------- 1 root root 1675 3月 10 21:48 id_rsa 
+-rw-r--r-- 1 root root 393 3月 10 21:48 id_rsa.pub 
+-rw-r--r-- 1 root root 366 3月 10 21:54 known_hosts
+</code></pre>
+<p>master 配置免密登录到master slave1 slave2</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   ssh-copy-id master<br>    ssh-copy-id slave1<br>    ssh-copy-id slave2</p>
+</blockquote>
+</blockquote>
+<p>四、安装配置 jdk<br>编译环境软件安装目录</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   mkdir -p &#x2F;export&#x2F;server</p>
+</blockquote>
+</blockquote>
+<p>JDK 1.8安装 上传 jdk-8u241-linux-x64.tar.gz到&#x2F;export&#x2F;server&#x2F;目录下 并解压文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   tar -zxvf jdk-8u241-linux-x64.tar.gz</p>
+</blockquote>
+</blockquote>
+<p>配置环境变量</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   vim &#x2F;etc&#x2F;profile export JAVA_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;jdk1.8.0_241 export PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin export CLASSPATH&#x3D;.:$JAVA_HOME&#x2F;lib&#x2F;dt.jar:$JAVA_HOME&#x2F;lib&#x2F;tools.jar</p>
+</blockquote>
+</blockquote>
+<p>重新加载环境变量文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   source &#x2F;etc&#x2F;profile</p>
+</blockquote>
+</blockquote>
+<p>查看 java 版本号</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>java -version 结果显示： [root@master jdk1.8.0_241]# java -version java version “1.8.0_241” Java(TM) SE Runtime Environment (build 1.8.0_241-b07) Java HotSpot(TM) 64-Bit Server VM (build 25.241-b07, mixed mode)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>master 节点将 java 传输到 slave1 和 slave2</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   scp -r &#x2F;export&#x2F;server&#x2F;jdk1.8.0_241&#x2F; root@slave1:&#x2F;export&#x2F;server&#x2F; scp -r &#x2F;export&#x2F;server&#x2F;jdk1.8.0_241&#x2F; root@slave2:&#x2F;export&#x2F;server&#x2F;</p>
+</blockquote>
+</blockquote>
+<p>配置 slave1 和 slave2 的 jdk 环境变量（注：和上方 master 的配置方法一样）<br>在 master slave1 和slave2 创建软连接</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   cd &#x2F;export&#x2F;server<br>    ln -s jdk1.8.0_241&#x2F; jdk</p>
+</blockquote>
+</blockquote>
+<p>重新加载环境变量文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   source &#x2F;etc&#x2F;profile</p>
+</blockquote>
+</blockquote>
+<p>zookeeper安装配置<br>配置主机名和IP的映射关系，修改 &#x2F;etc&#x2F;hosts 文件，添加 master.root slave1.root slave2.root</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<pre><code>vim /etc/hosts 
+#结果显示 
+127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 
+::1 localhost localhost.localdomain localhost6 localhost6.localdomain6 
+</code></pre>
+</blockquote>
+</blockquote>
+<pre><code>192.168.88.135 master master.root 192.168.88.136 slave1 slave1.root 192.168.88.137 slave2 slave2.root
+</code></pre>
+<p>zookeeper安装 上传 zookeeper-3.4.10.tar.gz到&#x2F;export&#x2F;server&#x2F;目录下 并解压文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   cd &#x2F;export&#x2F;server&#x2F; tar -zxvf zookeeper-3.4.10.tar.gz</p>
+</blockquote>
+</blockquote>
+<p>在 &#x2F;export&#x2F;server 目录下创建软连接</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>cd &#x2F;export&#x2F;server ln -s zookeeper-3.4.10&#x2F; zookeeper</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>进入 &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;conf&#x2F; 将 zoo_sample.cfg 文件复制为新文件 zoo.cfg</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>cd &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;conf&#x2F; cp zoo_sample.cfg zoo.cfg</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>接上步给 zoo.cfg 添加内容</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>#Zookeeper的数据存放目录 dataDir&#x3D;&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas<br>    # 保留多少个快照 autopurge.snapRetainCount&#x3D;3<br>    # 日志多少小时清理一次 autopurge.purgeInterval&#x3D;1<br>    # 集群中服务器地址 server.1&#x3D;master:2888:3888 server.2&#x3D;slave1:2888:3888 server.3&#x3D;slave2:2888:3888</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>进入 &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas 目录在此目录下创建 myid 文件，将 1 写入进去</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p> cd &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdata touch myid echo ‘1’ &gt; myid</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>将 master 节点中 &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10 路径下内容推送给slave1 和 slave2</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>scp -r &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10&#x2F; slave1:$PWD scp -r &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10&#x2F; slave2:$PWD</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>推送成功后，分别在 slave1 和 slave2 上创建软连接</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>ln -s zookeeper-3.4.10&#x2F; zookeeper</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>接上步推送完成后将 slave1 和 slave2 的 &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F; 文件夹下的 myid中的内容分别改为 2 和3</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   cd &#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;zkdatas&#x2F; 结果显示： [root@slave1 zkdatas]# vim myid [root@slave1 zkdatas]# more myid 2[root@slave2 zkdatas]# vim myid [root@slave2 zkdatas]# more myid 3</p>
+</blockquote>
+</blockquote>
+<p>配置zookeeper的环境变量（注：三台主机都需要配置）</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p> vim &#x2F;etc&#x2F;profile # zookeeper 环境变量 export ZOOKEEPER_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;zookeeper export PATH&#x3D;$PATH:$ZOOKEEPER_HOME&#x2F;bin</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>重新加载环境变量文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>source &#x2F;etc&#x2F;profile</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>进入 &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10&#x2F;bin 目录下启动 zkServer.sh 脚本 （注：三台都需要做）</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>cd &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10&#x2F;bin zkServer.sh start<br>    结果显示： [root@master bin]# .&#x2F;zkServer.sh start ZooKeeper JMX enabled by default Using config: &#x2F;export&#x2F;server&#x2F;zookeeper-3.4.10&#x2F;bin&#x2F;..&#x2F;conf&#x2F;zoo.cfg Starting zookeeper … STARTED</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>zookeeper 的状态</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<pre><code>zkServer.sh status 结果显示： [root@master server]# zkServer.sh status ZooKeeper JMX enabled by default Using config: /export/server/zookeeper-3.4.10/bin/../conf/zoo.cfg Mode: follower [root@slave1 server]# zkServer.sh status ZooKeeper JMX enabled by default Using config: /export/server/zookeeper-3.4.10/bin/../conf/zoo.cfg Mode: follower [root@slave2 conf]# zkServer.sh status ZooKeeper JMX enabled by default Using config: /export/server/zookeeper-3.4.10/bin/../conf/zoo.cfg Mode: leader
+</code></pre>
+</blockquote>
+</blockquote>
+<p>jps 结果显示： </p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   [root@master server]# jps 125348 QuorumPeerMain 16311 Jps [root@slave1 server]# jps 126688 QuorumPeerMain 17685 Jps [root@slave2 conf]# jps 126733 QuorumPeerMain 17727 Jps</p>
+</blockquote>
+</blockquote>
+<p>脚本一键启动</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   vim zkServer.sh<br>  #!&#x2F;bin&#x2F;bash<br>  if [ $# -eq 0 ] ;<br>  then<br>       echo “please input param:start stop”<br>else<br>if [ $1 &#x3D; start ] ;then<br>   echo “${1}ing master”<br>   ssh master “source &#x2F;etc&#x2F;profile;&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;bin&#x2F;zkServer.sh start”<br>         for i in {1..2}<br>          do<br>             echo “${1}ping slave${i}” </p>
+</blockquote>
+</blockquote>
+<pre><code>         ssh slave$&#123;i&#125; &quot;source /etc/profile;/export/server/zookeeper/bin/zkServer.sh start&quot; 
+    done 
+</code></pre>
+<p>fi<br>if [ $1 &#x3D; stop ];then<br>    echo “${1}ping master “<br>    ssh master “source &#x2F;etc&#x2F;profile;&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;bin&#x2F;zkServer.sh stop”<br>    for i in {1..2}<br>    do<br>       echo “${1}ping slave${i}” ssh slave${i} “source &#x2F;etc&#x2F;profile;&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;bin&#x2F;zkServer.sh stop”<br>    done<br>fi<br>if [ $1 &#x3D; status ];then<br>    echo “${1}ing master”<br>    ssh master “source &#x2F;etc&#x2F;profile;&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;bin&#x2F;zkServer.sh status”<br>    for i in {1..2}<br>    do<br>       echo “${1}ping slave${i}”<br>        ssh slave${i} “source &#x2F;etc&#x2F;profile;<br>&#x2F;export&#x2F;server&#x2F;zookeeper&#x2F;bin&#x2F;zkServer.sh status”<br>   done<br> fi<br> fi<br> #将文件放在 &#x2F;bin 目录下 chmod +x zkServer-all.sh &amp;&amp; zkServer-all.sh</p>
+<p>Hadoop 安装配置<br>把 hadoop-3.3.0-Centos7-64-with-snappy.tar.gz 上传到 &#x2F;export&#x2F;server 并解压文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>tar -zxvf hadoop-3.3.0-Centos7-64-with-snappy.tar.gz</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre><code>修改配置文件(进入路径 /export/server/hadoop-3.3.0/etc/hadoop)
+cd /export/server/hadoop-3.3.0/etc/hadoop
+hadoop-env.sh
+#文件最后添加 export JAVA_HOME=/export/server/jdk1.8.0_241 export HDFS_NAMENODE_USER=root export HDFS_DATANODE_USER=root export HDFS_SECONDARYNAMENODE_USER=root export YARN_RESOURCEMANAGER_USER=root export YARN_NODEMANAGER_USER=root
+core-site.xml
+&lt;!-- 设置默认使用的文件系统 Hadoop支持file、HDFS、GFS、ali|Amazon云等文件系统 - -&gt;
+&lt;property&gt; 
+         &lt;name&gt;fs.defaultFS&lt;/name&gt; 
+         &lt;value&gt;hdfs://master:8020&lt;/value&gt; 
+         &lt;/property&gt; 
+&lt;!-- 设置Hadoop本地保存数据路径 --&gt; 
+&lt;property&gt; 
+    &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; 
+    &lt;value&gt;/export/data/hadoop-3.3.0&lt;/value&gt; 
+&lt;/property&gt; 
+&lt;!-- 设置HDFS web UI用户身份 --&gt; 
+&lt;property&gt; 
+     &lt;name&gt;hadoop.http.staticuser.user&lt;/name&gt; 
+     &lt;value&gt;root&lt;/value&gt; 
+&lt;/property&gt; 
+</code></pre>
+<!-- 整合hive 用户代理设置 -->
+<property> 
+    <name>hadoop.proxyuser.root.hosts</name> 
+    <value>*</value> 
+    </property>
+     <property> 
+     <name>hadoop.proxyuser.root.groups</name> 
+     <value>*</value> 
+     </property> <
+     !-- 文件系统垃圾桶保存时间 --> <property> 
+     <name>fs.trash.interval</name>
+      <value>1440</value> 
+    </property>
+    hdfs-site.xml
+    <!-- 设置SNN进程运行机器位置信息 --> 
+    <property> 
+    <name>dfs.namenode.secondary.http-address</name> <value>slave1:9868</value>
+     </property>
+    mapred-site.xml
+    <!-- 设置MR程序默认运行模式： yarn集群模式 local本地模式 --> <property> 
+    <name>mapreduce.framework.name</name> 
+    <value>yarn</value> 
+    </property> 
+    <!-- MR程序历史服务地址 -->
+     <property> 
+    <name>mapreduce.jobhistory.address</name> 
+    <value>master:10020</value> 
+    </property> 
+    <!-- MR程序历史服务器web端地址 --> 
+    <property> 
+    <name>mapreduce.jobhistory.webapp.address</name> <value>master:19888</value> 
+    </property> 
+    <property> 
+    <name>yarn.app.mapreduce.am.env</name> 
+    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME}</value> 
+    </property> 
+    <property> 
+    <name>mapreduce.map.env</name> 
+    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME}</value> 
+    </property> 
+    <property> 
+    <name>mapreduce.reduce.env</name>
+    <value>HADOOP_MAPRED_HOME=${HADOOP_HOME}</value> 
+    </property>
+yarn-site.xml
+<!-- 设置YARN集群主角色运行机器位置 --> 
+<property> 
+<name>yarn.resourcemanager.hostname</name> 
+<value>master</value> 
+</property> 
+<property>
+ <name>yarn.nodemanager.aux-services</name> 
+ <value>mapreduce_shuffle</value> 
+ </property>
+  <!-- 是否将对容器实施物理内存限制 --> 
+  <property>
+   <name>yarn.nodemanager.pmem-check-enabled</name> 
+   <value>false</value>
+    </property>
+     <!-- 是否将对容器实施虚拟内存限制。 --> 
+     <property> 
+     <name>yarn.nodemanager.vmem-check-enabled</name>
+      <value>false</value> 
+      </property>
+       <!-- 开启日志聚集 --> 
+       <property> <name>yarn.log-aggregation-enable</name> <value>true</value> 
+       </property>
+        <!-- 设置yarn历史服务器地址 --> 
+        <property> 
+        <name>yarn.log.server.url</name> 
+        <value>http://master:19888/jobhistory/logs</value> 
+        </property> 
+        <!-- 历史日志保存的时间 7天 --> 
+        <property> 
+        <name>yarn.log-aggregation.retain-seconds</name> <value>604800</value>
+         </property>
+
+<pre><code>     node1
+    node2
+      node3
+</code></pre>
+<p>分发同步hadoop安装包</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   cd &#x2F;export&#x2F;server<br>     scp -r hadoop-3.3.0 root@slave1:$PWD<br>     scp -r hadoop-3.3.0 root@slave2:$PWD<br>将hadoop添加到环境变量</p>
+<blockquote>
+</blockquote>
+<p>   vim &#x2F;etc&#x2F;profile export HADOOP_HOME&#x3D;&#x2F;export&#x2F;server&#x2F;hadoop-3.3.0 export PATH&#x3D;$PATH:$HADOOP_HOME&#x2F;bin:$HADOOP_HOME&#x2F;sbin</p>
+</blockquote>
+</blockquote>
+<p>重新加载环境变量文件</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<p>   source &#x2F;etc&#x2F;profile</p>
+</blockquote>
+</blockquote>
+<pre><code>Hadoop集群启动
+格式化namenode（只有首次启动需要格式化）
+hdfs namenode -format
+</code></pre>
+<p>脚本一键启动<br>    [root@master ~]# start-dfs.sh Starting namenodes on [master] 上一次登录：五 3月 11 21:27:24 CST 2022pts&#x2F;0 上 Starting datanodes 上一次登录：五 3月 11 21:27:32 CST 2022pts&#x2F;0 上 Starting secondary namenodes [slave1] 上一次登录：五 3月 11 21:27:35 CST 2022pts&#x2F;0 上 </p>
+<pre><code>[root@master ~]# start-yarn.sh Starting resourcemanager 上一次登录：五 3月 11 21:27:41 CST 2022pts/0 上 Starting nodemanagers 上一次登录：五 3月 11 21:27:51 CST 2022pts/0 上
+启动后 输入 jps 查看
+
+[root@master ~]# jps 127729 NameNode 127937 DataNode 14105 Jps 128812 NodeManager 128591 ResourceManager [root@slave1 hadoop]# jps 121889 NodeManager 121559 SecondaryNameNode 7014 Jps 121369 DataNode
+ [root@slave2 hadoop]# jps
+ 6673 Jps 121543 NodeManager 121098 DataNode
+</code></pre>
+<p>WEB页面<br>HDFS集群：</p>
+<blockquote>
+<blockquote>
+<blockquote>
+</blockquote>
+<pre><code>http://master:9870/
+</code></pre>
+</blockquote>
+</blockquote>
+<p>YARN集群：</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://master:9870/">http://master:9870/</a></p>
 </blockquote>
 </blockquote>
 </blockquote>
